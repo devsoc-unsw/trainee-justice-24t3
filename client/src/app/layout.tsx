@@ -29,7 +29,7 @@ export default function RootLayout({
       >
         <div className="flex flex-row">
           <Navbar/>
-          <div>
+          <div className="flex-grow">
             {children}
           </div>
         </div>
