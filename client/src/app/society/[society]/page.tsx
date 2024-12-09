@@ -1,3 +1,6 @@
+"use client";
+
+import { useState } from "react";
 import { MdEmail } from "react-icons/md";
 import { FaDiscord, FaFacebook, FaInstagram } from "react-icons/fa";
 import { AiOutlineGlobal } from "react-icons/ai";
@@ -6,8 +9,25 @@ import Chip from "@/components/Chip";
 import { createRipple } from "@/components/Button";
 import { SquarePen } from "lucide-react";
 import Review from "@/components/Review";
+import ReviewSocietyModal from "@/components/ReviewSocietyModal";
 
 export default function SocietyPage() {
+  const [isOpen, setIsOpen] = useState(false); // Controls modal visibility
+  const [isAnimating, setIsAnimating] = useState(false); // Controls animation state
+
+  const handleOpenModal = () => {
+    setIsOpen(true);
+    setIsAnimating(true);
+  };
+
+  const handleCloseModal = () => {
+    setIsAnimating(false);
+    setTimeout(() => {
+      setIsOpen(false);
+    }, 300); // Wait for animation to complete
+  };
+
+
   const Top3tags = ["Engaging", "Friendly", "Epic"];
   const avgStar = 4.5;
   const percentage = ((avgStar / 5) * 100).toFixed(1) + "%";
@@ -142,7 +162,10 @@ export default function SocietyPage() {
             </div>
             <button
               className="flex gap-1 bg-lightGreen px-4 py-2 rounded-lg relative overflow-hidden text-xl font-lalezar"
-              onClick={createRipple}
+              onClick={(e) => {
+                createRipple(e);
+                handleOpenModal();
+              }}
             >
               <SquarePen /> Add Review
             </button>
@@ -161,15 +184,15 @@ export default function SocietyPage() {
                 you'll find over five teams of enthusiastic students diligently
                 working on a wide array of web apps, ranging from academic
                 degree planners to platforms that display available campus
-                facilities. 
-                
+                facilities.
+
 
 
                 Our primary goal is to develop solutions that
                 enhance the lives of university students in their daily
                 routines.
-                
-                
+
+
                 "
             />
             <Review
@@ -184,28 +207,8 @@ export default function SocietyPage() {
                 you'll find over five teams of enthusiastic students diligently
                 working on a wide array of web apps, ranging from academic
                 degree planners to platforms that display available campus
-                facilities. 
-                
+                facilities.
 
-
-                Our primary goal is to develop solutions that
-                enhance the lives of university students in their daily
-                routines."
-            />
-            <Review
-              anonymous={false}
-              username="z5583784"
-              title="Best society ever"
-              starRating={4}
-              date={new Date()}
-              reviewContent=" We are the Software Development Society, a place for imaginative
-                and inventive students dedicated to crafting exceptional
-                products for the benefit of the community! Within our society,
-                you'll find over five teams of enthusiastic students diligently
-                working on a wide array of web apps, ranging from academic
-                degree planners to platforms that display available campus
-                facilities. 
-                
 
 
                 Our primary goal is to develop solutions that
@@ -224,8 +227,8 @@ export default function SocietyPage() {
                 you'll find over five teams of enthusiastic students diligently
                 working on a wide array of web apps, ranging from academic
                 degree planners to platforms that display available campus
-                facilities. 
-                
+                facilities.
+
 
 
                 Our primary goal is to develop solutions that
@@ -244,8 +247,28 @@ export default function SocietyPage() {
                 you'll find over five teams of enthusiastic students diligently
                 working on a wide array of web apps, ranging from academic
                 degree planners to platforms that display available campus
-                facilities. 
-                
+                facilities.
+
+
+
+                Our primary goal is to develop solutions that
+                enhance the lives of university students in their daily
+                routines."
+            />
+            <Review
+              anonymous={false}
+              username="z5583784"
+              title="Best society ever"
+              starRating={4}
+              date={new Date()}
+              reviewContent=" We are the Software Development Society, a place for imaginative
+                and inventive students dedicated to crafting exceptional
+                products for the benefit of the community! Within our society,
+                you'll find over five teams of enthusiastic students diligently
+                working on a wide array of web apps, ranging from academic
+                degree planners to platforms that display available campus
+                facilities.
+
 
 
                 Our primary goal is to develop solutions that
@@ -264,8 +287,8 @@ export default function SocietyPage() {
                 you'll find over five teams of enthusiastic students diligently
                 working on a wide array of web apps, ranging from academic
                 degree planners to platforms that display available campus
-                facilities. 
-                
+                facilities.
+
 
 
                 Our primary goal is to develop solutions that
@@ -275,6 +298,63 @@ export default function SocietyPage() {
           </div>
         </div>
       </div>
+
+      {/* Modal */}
+      {isOpen && (
+        <div
+          className={`fixed inset-0 z-50 overflow-y-scroll transition-opacity duration-300 ${
+            isAnimating ? "bg-opacity-50 bg-black" : "bg-opacity-0"
+          }`}
+          onClick={handleCloseModal}
+        >
+          <div
+            className="flex items-center justify-center min-h-full py-4"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div
+              className={`rounded-lg shadow-md ${
+                isAnimating ? "animate-fade-in" : "animate-fade-out"
+              }`}
+            >
+              <ReviewSocietyModal
+                name="DevSoc"
+                logo="https://cdn.linkupevents.com/society/Software+Development+Society.png"
+                onClose={handleCloseModal}
+              />
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Animation Styles */}
+      <style jsx>{`
+        @keyframes fade-in {
+          from {
+            opacity: 0;
+            transform: scale(0.95);
+          }
+          to {
+            opacity: 1;
+            transform: scale(1);
+          }
+        }
+        @keyframes fade-out {
+          from {
+            opacity: 1;
+            transform: scale(1);
+          }
+          to {
+            opacity: 0;
+            transform: scale(0.95);
+          }
+        }
+        .animate-fade-in {
+          animation: fade-in 0.3s ease-out;
+        }
+        .animate-fade-out {
+          animation: fade-out 0.3s ease-out;
+        }
+      `}</style>
     </>
   );
 }
