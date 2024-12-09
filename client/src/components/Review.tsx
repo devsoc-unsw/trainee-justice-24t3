@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Chip from "./Chip";
 import { format } from "date-fns";
+import { Pencil, Trash2 } from "lucide-react";
 
 interface ReviewProps {
   username: string;
@@ -11,6 +12,7 @@ interface ReviewProps {
   date: Date;
   anonymous: boolean;
   tags?: string[];
+  variant?: string;
 }
 
 function Review({
@@ -22,6 +24,7 @@ function Review({
   date,
   anonymous,
   tags,
+  variant = "default",
 }: ReviewProps) {
   const percentage = (starRating / 5) * 100 + "%";
 
@@ -69,12 +72,22 @@ function Review({
             {reviewContent}
           </div>
           {/* Tags */}
-          <div className="flex gap-2">
-            {tags?.slice(0, 3).map((tag, index) => (
-              <Chip variant="default" key={index}>
-                {tag}
-              </Chip>
-            ))}
+          <div className="flex justify-between">
+            <div className="flex gap-2">
+              {tags?.slice(0, 3).map((tag, index) => (
+                <Chip variant="default" key={index}>
+                  {tag}
+                </Chip>
+              ))}
+            </div>
+            <div className="flex gap-3">
+              {variant === "profile" && (
+                <Pencil className="cursor-not-allowed" />
+              )}
+              {variant === "profile" && (
+                <Trash2 className="cursor-not-allowed" />
+              )}
+            </div>
           </div>
         </div>
       </div>
