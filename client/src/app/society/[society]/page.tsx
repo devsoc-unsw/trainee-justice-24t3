@@ -6,6 +6,7 @@ import Chip from "@/components/Chip";
 import { createRipple } from "@/components/Button";
 import { SquarePen } from "lucide-react";
 import Review from "@/components/Review";
+import Rating from "@/components/Rating";
 
 export default function SocietyPage() {
   const Top3tags = ["Engaging", "Friendly", "Epic"];
@@ -98,15 +99,7 @@ export default function SocietyPage() {
                 Software Development Society
               </h1>
               <div className="flex flex-row gap-0.5">
-                <div className="relative inline-block text-slate-400">
-                  <p className="text-2xl">★★★★★</p>
-                  <p
-                    className="text-2xl bg-[#299800] bg-clip-text absolute inset-0 text-transparent"
-                    style={{ width: percentage }}
-                  >
-                    ★★★★★
-                  </p>
-                </div>
+                <Rating percentage={percentage} />
                 <p className="text-sm text-slate-800 px-1 pt-1">
                   {reviews} Reviews
                 </p>
@@ -115,10 +108,10 @@ export default function SocietyPage() {
                 We are the Software Development Society, a place for imaginative
                 and inventive students dedicated to crafting exceptional
                 products for the benefit of the community! Within our society,
-                you&apos;ll find over five teams of enthusiastic students diligently
-                working on a wide array of web apps, ranging from academic
-                degree planners to platforms that display available campus
-                facilities. Our primary goal is to develop solutions that
+                you&apos;ll find over five teams of enthusiastic students
+                diligently working on a wide array of web apps, ranging from
+                academic degree planners to platforms that display available
+                campus facilities. Our primary goal is to develop solutions that
                 enhance the lives of university students in their daily
                 routines.
               </p>

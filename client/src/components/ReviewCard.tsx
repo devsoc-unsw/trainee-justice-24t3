@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Chip from "./Chip";
 import Link from "next/link";
+import Rating from "./Rating";
 
 interface ReviewCardProps {
   title: string;
@@ -39,15 +40,7 @@ export function ReviewCard({
               <h1 className="text-xl line-clamp-2">{title}</h1>
               <div className="flex gap-1">
                 <div className="flex gap-0.5">
-                  <div className="relative inline-block text-slate-400">
-                    <p className="text-2xl">★★★★★</p>
-                    <p
-                      className="text-2xl bg-[#299800] bg-clip-text absolute inset-0 text-transparent"
-                      style={{ width: percentage }}
-                    >
-                      ★★★★★
-                    </p>
-                  </div>
+                  <Rating percentage={percentage} />
                 </div>
                 <p className="text-sm text-slate-800 px-1 pt-1">({reviews})</p>
               </div>
