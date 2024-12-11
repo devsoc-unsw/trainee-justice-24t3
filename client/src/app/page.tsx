@@ -1,8 +1,28 @@
 import Image from "next/image";
 import SearchBar from "../components/SearchBar";
 import { ReviewCard } from "@/components/ReviewCard";
+import DropdownSelect, { DropdownItem } from "@/components/DropdownSelect";
 
 export default function Home() {
+  const sortSocietiesData: DropdownItem[] = [
+    {
+      id: 'A-Z',
+      name: 'Alphabetical (A-Z)',
+    },
+    {
+      id: 'Z-A',
+      name: 'Alphabetical (Z-A)',
+    },
+    {
+      id: 'Rating(H-L)',
+      name: 'Rating (High to Low)',
+    },
+    {
+      id: 'Rating(L-H)',
+      name: 'Rating (Low to High)',
+    },
+  ];
+
   return (
     <>
       <Image
@@ -26,8 +46,14 @@ export default function Home() {
           <p className="font-lalezar text-2xl md:text-lg">
             Your go-to destination for UNSW society reviews and insights.
           </p>
-          <div className="flex justify-center items-center mt-10 mb-10">
+          <div className="flex justify-center items-center mt-10 mb-10 gap-4">
             <SearchBar />
+            <DropdownSelect
+              id="sort-societies"
+              data={sortSocietiesData}
+              width="260px"
+              title="Sort by"
+            />
           </div>
           <div className="grid grid-cols-3 gap-7 1xl:grid-cols-2 landmd:grid-cols-1 mb-6">
             <ReviewCard

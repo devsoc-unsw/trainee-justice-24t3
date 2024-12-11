@@ -6,6 +6,7 @@ import Chip from "@/components/Chip";
 import { createRipple } from "@/components/Button";
 import { SquarePen } from "lucide-react";
 import Review from "@/components/Review";
+import DropdownSelect, { DropdownItem } from "@/components/DropdownSelect";
 
 export default function SocietyPage() {
   const Top3tags = ["Engaging", "Friendly", "Epic"];
@@ -17,6 +18,21 @@ export default function SocietyPage() {
   const discordUrl = "https://discord.gg/CWnTGNZzKU";
   const emailUrl = "unsw@180dc.org";
   const instagramUrl = "https://instagram.com/aiesecinunsw";
+
+  const sortReviewsData: DropdownItem[] = [
+    {
+      id: 'Recent',
+      name: 'Most Recent',
+    },
+    {
+      id: 'Rating(H-L)',
+      name: 'Rating (High to Low)',
+    },
+    {
+      id: 'Rating(L-H)',
+      name: 'Rating (Low to High)',
+    },
+  ];
 
   return (
     <>
@@ -140,12 +156,15 @@ export default function SocietyPage() {
             <div className="flex items-center">
               <h1 className="text-4xl font-lalezar">Reviews</h1>
             </div>
-            <button
-              className="flex gap-1 bg-lightGreen px-4 py-2 rounded-lg relative overflow-hidden text-xl font-lalezar"
-              onClick={createRipple}
-            >
-              <SquarePen /> Add Review
-            </button>
+            <div className="flex flex-row gap-2 items-center">
+              <DropdownSelect id="sort-reviews" selectedId="Recent" data={sortReviewsData} width="260px" variant="societyPage"></DropdownSelect>
+              <button
+                className="flex gap-1 bg-lightGreen px-4 py-2 rounded-lg relative overflow-hidden text-xl font-spartan"
+                onClick={createRipple}
+              >
+                <SquarePen /> Add Review
+              </button>
+            </div>
           </div>
           <div className="grid grid-cols-1 gap-5">
             <Review
@@ -161,15 +180,15 @@ export default function SocietyPage() {
                 you'll find over five teams of enthusiastic students diligently
                 working on a wide array of web apps, ranging from academic
                 degree planners to platforms that display available campus
-                facilities. 
-                
+                facilities.
+
 
 
                 Our primary goal is to develop solutions that
                 enhance the lives of university students in their daily
                 routines.
-                
-                
+
+
                 "
             />
             <Review
@@ -184,28 +203,8 @@ export default function SocietyPage() {
                 you'll find over five teams of enthusiastic students diligently
                 working on a wide array of web apps, ranging from academic
                 degree planners to platforms that display available campus
-                facilities. 
-                
+                facilities.
 
-
-                Our primary goal is to develop solutions that
-                enhance the lives of university students in their daily
-                routines."
-            />
-            <Review
-              anonymous={false}
-              username="z5583784"
-              title="Best society ever"
-              starRating={4}
-              date={new Date()}
-              reviewContent=" We are the Software Development Society, a place for imaginative
-                and inventive students dedicated to crafting exceptional
-                products for the benefit of the community! Within our society,
-                you'll find over five teams of enthusiastic students diligently
-                working on a wide array of web apps, ranging from academic
-                degree planners to platforms that display available campus
-                facilities. 
-                
 
 
                 Our primary goal is to develop solutions that
@@ -224,8 +223,8 @@ export default function SocietyPage() {
                 you'll find over five teams of enthusiastic students diligently
                 working on a wide array of web apps, ranging from academic
                 degree planners to platforms that display available campus
-                facilities. 
-                
+                facilities.
+
 
 
                 Our primary goal is to develop solutions that
@@ -244,8 +243,28 @@ export default function SocietyPage() {
                 you'll find over five teams of enthusiastic students diligently
                 working on a wide array of web apps, ranging from academic
                 degree planners to platforms that display available campus
-                facilities. 
-                
+                facilities.
+
+
+
+                Our primary goal is to develop solutions that
+                enhance the lives of university students in their daily
+                routines."
+            />
+            <Review
+              anonymous={false}
+              username="z5583784"
+              title="Best society ever"
+              starRating={4}
+              date={new Date()}
+              reviewContent=" We are the Software Development Society, a place for imaginative
+                and inventive students dedicated to crafting exceptional
+                products for the benefit of the community! Within our society,
+                you'll find over five teams of enthusiastic students diligently
+                working on a wide array of web apps, ranging from academic
+                degree planners to platforms that display available campus
+                facilities.
+
 
 
                 Our primary goal is to develop solutions that
@@ -264,8 +283,8 @@ export default function SocietyPage() {
                 you'll find over five teams of enthusiastic students diligently
                 working on a wide array of web apps, ranging from academic
                 degree planners to platforms that display available campus
-                facilities. 
-                
+                facilities.
+
 
 
                 Our primary goal is to develop solutions that
